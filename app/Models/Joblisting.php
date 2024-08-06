@@ -15,8 +15,9 @@ class Joblisting extends Model
          if(!empty($filters['id'])){
             $query -> where('hashId','=',request('id'));
          }
-         if(!empty($filters['search'])){
+         else{
             $query -> where('role','like','%'.request('search').'%');
          }
+
     }
 }
