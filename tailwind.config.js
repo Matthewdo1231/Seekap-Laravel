@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
    content: [
+    './src/**/*.{js,ts,jsx,tsx}', 
+    './public/layout.html',
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
@@ -19,6 +21,10 @@ export default {
       'phone': '400px', // Custom breakpoint for phones
     },
     extend: {},
+    fontFamily: {
+      sans: ['Roboto'],
+      serif: ['Georgia', 'Cambria', 'serif'],
+    },
     fontSize: {
       'xs': '0.75rem',
       'sm': '0.875rem',
