@@ -7,17 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Joblisting extends Model
 {
-    use HasFactory;
+   use HasFactory;
 
-    protected $table = 'joblisting';
+   protected $table = 'joblisting';
 
-    public function scopeFilter($query, array $filters){
-         if(!empty($filters['id'])){
-            $query -> where('hashId','=',request('id'));
-         }
-         else{
-            $query -> where('role','like','%'.request('search').'%');
-         }
-
-    }
+   public function scopeFilter($query, array $filters){
+        if(!empty($filters['id'])){
+           $query -> where('hashId','=',request('id'));
+        }
+        if(!empty($filters['tag'])){
+           $query ->where('jobaddress','like','%'.request('tag').'%');
+        }
+        if(!empty($filters['search'])){
+           $query -> where('role','like','%'.request('search').'%');
+        }
+      }
 }

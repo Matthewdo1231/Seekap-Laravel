@@ -4,6 +4,9 @@
 <div class="mt-6 lg:grid lg:grid-cols-[3fr_4fr] lg:max-w-[1280px] lg:mx-auto lg:gap-4"> 
    {{--job listing column container--}}
   <div class="flex flex-col justify-center mx-6 gap-4">
+
+    <div id="address-js">Alaska</div>
+    
   @foreach($joblistings as $joblisting)
   <a href="/?id={{$joblisting -> hashId}}">
    <article class="group relative flex flex-col p-8 rounded-lg border-2 border-gray-300 hover:cursor-pointer">
@@ -48,5 +51,9 @@
 
     }
 
- </script>
-
+  document.getElementById('address-js').addEventListener('click', function(event) {
+      let url = new URL(window.location.href);
+      url.searchParams.set('tag', 'AK');
+      window.location.href = url;
+  });
+  </script>
