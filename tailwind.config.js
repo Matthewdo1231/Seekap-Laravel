@@ -20,7 +20,11 @@ export default {
       'tablet': '540px', // Custom breakpoint for tablets
       'phone': '400px', // Custom breakpoint for phones
     },
-    extend: {},
+    extend: {
+      backgroundColor:{
+        "light-gray": "#e1dedd",
+    },
+    },
     fontFamily: {
       sans: ['Roboto'],
       serif: ['Georgia', 'Cambria', 'serif'],
