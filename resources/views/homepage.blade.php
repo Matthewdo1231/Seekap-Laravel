@@ -8,7 +8,7 @@
       {{$joblistings->links('vendor.pagination.tailwind')}}
      </div>
    @else
-     <div>No listing found</div>
+  <div>No listing found</div>
    @endif
 </x-layout>
 

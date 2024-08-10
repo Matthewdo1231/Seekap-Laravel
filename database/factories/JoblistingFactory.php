@@ -33,6 +33,15 @@ class JoblistingFactory extends Factory
        return implode(',',array_slice(self::$jobniches,random_int(1,8),1));
     }
 
+    private static $jobType = [ 
+        'FullTime',
+        'Part-Time',
+       ];
+    
+    public function genJobType(){
+       return implode(',',array_slice(self::$jobType,random_int(0,1),1));
+    }
+
 
     public function definition(): array
     {
@@ -45,6 +54,7 @@ class JoblistingFactory extends Factory
             'salary' => $this -> faker -> randomFloat(),
             'role'=> $this -> faker -> jobTitle(),
             'niche' => self::genJobNiches(),    
+            'jobtype' => self::genJobType(),    
             'reviews' =>  $this -> faker -> randomFloat(),
             'about' => $this -> faker -> sentence(),
             'aboutRole'=> $this -> faker -> paragraph($nbSentences = 3, $variableNbSentences = true),

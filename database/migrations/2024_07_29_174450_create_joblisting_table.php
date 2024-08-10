@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('jobtitle');
             $table->string('companyname');
             $table->string('jobaddress');
+            $table->string('jobtype');
             $table->string('salary');
             $table->string('role');
             $table->string('niche');

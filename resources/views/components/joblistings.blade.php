@@ -3,7 +3,7 @@
 {{--parent container--}}
 <div class="mt-6 lg:grid lg:grid-cols-[3fr_4fr] lg:max-w-[1280px] lg:mx-auto lg:gap-4"> 
    {{--job listing column container--}}
-  <div class="flex flex-col justify-center mx-6 gap-4">
+  <div class="flex flex-col justify-center mx-6 gap-4 ">
     
   @foreach($joblistings as $joblisting)
 
@@ -20,35 +20,13 @@
 
   </div>
 
-  {{--job full description column container--}}
-<div x-init="init()" class="hidden relative min-w-[380px] max-w-[460] lg:inline">  
-  <article id="fullJobDesc" class="flex flex-col bg-yellow-200 ">
-    @foreach($joblistingFullDesc as $joblisting)
-   <div>{{$joblisting -> role}}</div>
-   <div>{{$joblisting -> about}}</div>
-   <div></div>
-   <div></div>
-   @endforeach
-  </article>  
-</div>
-</div>
+  {{--job full description column component--}}
+    <x-joblistingfulldescription :joblistingFullDesc="$joblistingFullDesc"/>
+
+  </div>
  </div>
 
  <script>
-    function init(){
-      window.addEventListener('scroll',()=>{
-         const fullJobDesc = document.querySelector('#fullJobDesc');
-         if(window.scrollY >= 235){
-            fullJobDesc.classList.add('fixed','top-2');
-         }
-         else{
-          fullJobDesc.classList.remove('fixed','top-2') 
-         }
-      })
-
-    }
-
-
     
     document.querySelectorAll('#jobfulldesc-js').forEach(element =>{
         element.addEventListener('click' , ()=>{

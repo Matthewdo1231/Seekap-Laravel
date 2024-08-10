@@ -16,7 +16,8 @@ class Joblisting extends Model
            $query -> where('hashId','=',request('id'));
         }
         if(!empty($filters['tag'])){
-           $query ->where('jobaddress','like','%'.request('tag').'%');
+           $query ->where('companyname','like','%'.request('tag').'%')
+                  ->orWhere('jobtype','like','%'.request('tag').'%');
         }
         if(!empty($filters['search'])){
            $query -> where('role','like','%'.request('search').'%');
