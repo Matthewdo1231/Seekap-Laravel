@@ -11,7 +11,7 @@ class EmployerSiteController extends Controller
     }
 
 
-    public function create(){
-        return view('form');
+    public function create($form){
+        return view($form);
     }
 }

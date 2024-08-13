@@ -5,7 +5,7 @@
         <span class="ml-2 text-xl text-gray-500">Collapse</span>
     </button>
     
-    <a href="/" class="relative flex justify-around my-2 mx-2 border-2 border-blue-400 rounded-lg"> 
+    <a href="/employer/create/form1" class="relative flex justify-around my-2 mx-2 border-2 border-blue-400 rounded-lg"> 
         <i class="fa-solid fa-plus absolute text-xl left-1 top-1 text-blue-500"></i>
         <span class="ml-4 text-xl text-blue-400">Create new</span>
     </a>

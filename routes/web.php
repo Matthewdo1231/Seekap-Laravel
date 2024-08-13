@@ -11,4 +11,4 @@ Route::get('/', [JoblistingController::class, 'index']);
 //Employer index
 Route::get('/employer', [EmployerSiteController::class, 'index']);
 
-Route::get('/employer/create', [EmployerSiteController::class, 'create']);
+Route::get('/employer/create/{form}', [EmployerSiteController::class, 'create']);
