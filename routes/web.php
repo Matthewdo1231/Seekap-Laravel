@@ -8,7 +8,15 @@ use App\Http\Controllers\EmployerSiteController;
 //Employer index
 Route::get('/', [JoblistingController::class, 'index']);
 
+
+
 //Employer index
 Route::get('/employer', [EmployerSiteController::class, 'index']);
 
+//Listing forms
 Route::get('/employer/create/{form}', [EmployerSiteController::class, 'create']);
+
+//Store Pending Form
+Route::post('/create', [EmployerSiteController::class, 'store']);
+
+
