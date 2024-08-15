@@ -1,7 +1,6 @@
 <x-layout>
     <!--To add more input create a unique id to input element and it's pen font and them to the same group id-->
 
-<?php $jobinfos = json_decode($json)?>
 
 @foreach($jobinfos as $jobinfo)
 

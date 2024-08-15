@@ -8,14 +8,27 @@ use Illuminate\Http\Request;
 class FormController extends Controller
 {
     public function create($form){
-        return view($form,[
-            'json' => self::getForm1Info(),
-        ]);
+        if($form == 'form1'){
+            return view($form,[
+                'jobinfos' => self::getForm1Info(),
+            ]);
+        }
+        if($form == 'form2'){
+            return view($form,[
+                'jobinfos' => self::getForm2Info(),
+            ]);
+        }
+        
     }
 
     public function getForm1Info(){
-      return PendingForm::select('jobtitle','companyname','jobaddress','jobtype','niche')->filter('3547')->get();
+      return PendingForm::select('hashId','jobtitle','companyname','jobaddress','jobtype','niche')->filter('8349')->get();
     }
+
+
+    public function getForm2Info(){
+        return PendingForm::select('about','aboutRole','requirements','benefits')->filter('8349')->get();
+      }
 
     
     public function store(Request $request){
@@ -26,8 +39,7 @@ class FormController extends Controller
             'jobtype' => 'required',
             'niche' => 'required',
         ]);
-        $validatedData['hashId'] = mt_rand(1,10000); 
-        
+        $validatedData['hashId'] = mt_rand(1,10000);       
          PendingForm::create($validatedData);
     }
     
