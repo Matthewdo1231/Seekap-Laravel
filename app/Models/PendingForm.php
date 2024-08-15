@@ -10,4 +10,10 @@ class PendingForm extends Model
     use HasFactory;
 
     protected $table = 'pendingform';
+
+    public function scopeFilter($query, $filters){
+        if(!empty($filters)){
+           $query -> where('hashId','=',$filters);
+        }
+    }
 }

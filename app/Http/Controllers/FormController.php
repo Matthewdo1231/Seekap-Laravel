@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PendingForm;
 use Illuminate\Http\Request;
 
-class EmployerSiteController extends Controller
+class FormController extends Controller
 {
-    public function index(){
-        return view('employerhome');
-    }
-
-
     public function create($form){
         return view($form,[
             'json' => self::getForm1Info(),
@@ -22,6 +17,7 @@ class EmployerSiteController extends Controller
       return PendingForm::select('jobtitle','companyname','jobaddress','jobtype','niche')->filter('3547')->get();
     }
 
+    
     public function store(Request $request){
           $validatedData = $request -> validate([
             'jobtitle' => 'required',
@@ -35,4 +31,5 @@ class EmployerSiteController extends Controller
          PendingForm::create($validatedData);
     }
     
+
 }
