@@ -21,9 +21,22 @@ class FormController extends Controller
         
     }
 
-    public function getForm1Info(){
+    public function getForm1Info(){ 
         $Id = '8349';
-       return PendingForm::select('hashId','jobtitle','companyname','jobaddress','jobtype','niche')->filter($Id)->get();
+        if(!empty($Id)){
+         return PendingForm::select('hashId','jobtitle','companyname','jobaddress','jobtype','niche')->filter($Id)->get();
+        }
+        else{
+            return collect([(object) [
+                'hashId' => null,
+                'jobtitle' => '',
+                'companyname' => '',
+                'jobaddress' => '',
+                'jobtype' => '',
+                'niche' => ''
+            ]]);
+    
+        }
     }
 
 
@@ -33,8 +46,9 @@ class FormController extends Controller
 
     
     public function store(Request $request){
-      //If userId matches matches column in database overwrite info else create new column
-        dd(count(self::getForm1Info()) == 0);
+        $Id = '8349';
+      //If userId not matches in any column in database create new one else overwrite the existing one
+        if(count(self::getForm1Info()) == 0){
 
           $validatedData = $request -> validate([
             'jobtitle' => 'required',
@@ -45,6 +59,19 @@ class FormController extends Controller
         ]);
         $validatedData['hashId'] = mt_rand(1,10000);       
          PendingForm::create($validatedData);
+         }
+
+        else{
+            PendingForm::where('hashId', $Id)
+            ->update([
+            'jobtitle' => $request -> jobtitle,
+            'companyname' => $request -> companyname,
+            'jobaddress' => $request -> jobaddress,
+            'jobtype' => $request -> jobtype,
+            'niche' => $request -> niche,
+            ]);
+        }
+
     }
     
 

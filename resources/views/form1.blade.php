@@ -1,8 +1,9 @@
 <x-layout>
     <!--To add more input create a unique id to input element and it's pen font and them to the same group id-->
 
+@php dd($jobinfos[0] -> jobtitle) @endphp
 
-@foreach($jobinfos as $jobinfo)
+@foreach($jobinfos as $jobinfo)  
 
  <form id="form1" method="POST" action="/create" class="flex flex-row justify-center">
     @csrf
@@ -52,7 +53,6 @@
        
     </div>
  </form>
-
  @endforeach
 </x-layout>
 
@@ -127,7 +127,7 @@
           const formElem =  document.querySelector('#form1');
 
           formElem.addEventListener('submit',(event)=>{
-           
+           event.preventDefault();
 
            let formData = new FormData(formElem);
 
