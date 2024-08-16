@@ -22,7 +22,8 @@ class FormController extends Controller
     }
 
     public function getForm1Info(){
-      return PendingForm::select('hashId','jobtitle','companyname','jobaddress','jobtype','niche')->filter('8349')->get();
+        $Id = '8349';
+       return PendingForm::select('hashId','jobtitle','companyname','jobaddress','jobtype','niche')->filter($Id)->get();
     }
 
 
@@ -32,6 +33,9 @@ class FormController extends Controller
 
     
     public function store(Request $request){
+      //If userId matches matches column in database overwrite info else create new column
+        dd(count(self::getForm1Info()) == 0);
+
           $validatedData = $request -> validate([
             'jobtitle' => 'required',
             'companyname' => 'required',

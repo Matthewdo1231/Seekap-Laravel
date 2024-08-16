@@ -127,7 +127,7 @@
           const formElem =  document.querySelector('#form1');
 
           formElem.addEventListener('submit',(event)=>{
-            event.preventDefault();
+           
 
            let formData = new FormData(formElem);
 
