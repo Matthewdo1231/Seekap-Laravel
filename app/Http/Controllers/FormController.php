@@ -24,10 +24,10 @@ class FormController extends Controller
     public function getForm1Info(){ 
         $Id = '8349';
         if(!empty($Id)){
-         return PendingForm::select('hashId','jobtitle','companyname','jobaddress','jobtype','niche')->filter($Id)->get();
+         return PendingForm::select('jobtitle','companyname','requirements','jobaddress','jobtype','niche')->filter($Id)->get();
         }
         else{
-            return collect([(object) [
+            return collect([(object)[
                 'hashId' => null,
                 'jobtitle' => '',
                 'companyname' => '',
@@ -35,18 +35,29 @@ class FormController extends Controller
                 'jobtype' => '',
                 'niche' => ''
             ]]);
-    
         }
     }
 
 
     public function getForm2Info(){
-        return PendingForm::select('about','aboutRole','requirements','benefits')->filter('8349')->get();
-      }
-
+        $Id = '8349';
+            if(!empty($Id)){
+            return PendingForm::select('about','aboutRole','requirements','benefits')->filter('8349')->get();
+            }
+          else{
+            return collect([(object)[
+                'about' => '',
+                'aboutRole' => '',
+                'requirements' => '',
+                'benefits' => '',
+            ]]);
+         }
+    }
     
     public function store(Request $request){
-        $Id = '8349';
+       if($request -> header('formNumber') == 'form1'){
+        $Id = '8349'; //Id must be unique from user login session
+
       //If userId not matches in any column in database create new one else overwrite the existing one
         if(count(self::getForm1Info()) == 0){
 
@@ -58,13 +69,13 @@ class FormController extends Controller
             'niche' => 'required',
         ]);
         $validatedData['hashId'] = mt_rand(1,10000);       
-         PendingForm::create($validatedData);
+        PendingForm::create($validatedData);
          }
 
         else{
             PendingForm::where('hashId', $Id)
             ->update([
-            'jobtitle' => $request -> jobtitle,
+            'jobtitle' => $request-> jobtitle,
             'companyname' => $request -> companyname,
             'jobaddress' => $request -> jobaddress,
             'jobtype' => $request -> jobtype,
@@ -72,7 +83,8 @@ class FormController extends Controller
             ]);
         }
 
-    }
+     }
+  }
     
 
 }
