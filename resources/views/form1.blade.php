@@ -1,9 +1,14 @@
 <x-layout>
     <!--To add more input create a unique id to input element and it's pen font and them to the same group id-->
 
-@php dd($jobinfos[0] -> jobtitle) @endphp
+@php 
+       $jobtitle = $jobinfos[0]  -> jobtitle;
+       $companyname = $jobinfos[0]  -> companyname;
+       $jobaddress = $jobinfos[0]  -> jobaddress;
+       $jobtype = $jobinfos[0]  -> jobtype;
+       $niche = $jobinfos[0]  -> niche;
+@endphp 
 
-@foreach($jobinfos as $jobinfo)  
 
  <form id="form1" method="POST" action="/create" class="flex flex-row justify-center">
     @csrf
@@ -17,31 +22,31 @@
 
      <div class="relative flex flex-col">
         <p class="text-lg mx-48 mt-4">Job Title</p>
-        <input data-group="input" id="jobtitle-input" name="jobtitle" value="{{$jobinfo -> jobtitle}}" class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
+        <input data-group="input" id="jobtitle-input" name="jobtitle" value="{{$jobtitle}}" class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
         <i data-group="pen" id="jobtitle-edit-js" class="fa-solid fa-pen absolute right-60 bottom-4 text-md hover:cursor-pointer"></i>
      </div>
      
      <div class="relative flex flex-col">
         <p class="text-lg mx-48 mt-4">Company Name</p>
-        <input data-group="input" id="companyname-input" name="companyname" value="{{$jobinfo -> companyname}}"  class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
+        <input data-group="input" id="companyname-input" name="companyname" value="{{$companyname}}"  class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
         <i data-group="pen" id="companyname-edit-js" class="fa-solid fa-pen absolute right-60 bottom-4 text-md hover:cursor-pointer"></i>
      </div>  
 
      <div class="relative flex flex-col">
         <p class="text-lg mx-48 mt-4">Job Address</p>
-        <input data-group="input" id="jobaddress-input" name="jobaddress" value="{{$jobinfo -> jobaddress}}" class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
+        <input data-group="input" id="jobaddress-input" name="jobaddress" value="{{$jobaddress}}" class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
         <i data-group="pen" id="jobaddress-edit-js" class="fa-solid fa-pen absolute right-60 bottom-4 text-md hover:cursor-pointer"></i>
      </div>  
 
      <div class="relative flex flex-col">
         <p class="text-lg mx-48 mt-4">Employement Type</p>
-        <input data-group="input" id="jobtype-input" name="jobtype" value="{{$jobinfo -> jobtype}}"  class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
+        <input data-group="input" id="jobtype-input" name="jobtype" value="{{$jobtype}}"  class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
         <i data-group="pen" id="jobtype-edit-js" class="fa-solid fa-pen absolute right-60 bottom-4 text-md hover:cursor-pointer"></i>
      </div>  
 
      <div class="relative flex flex-col">   
         <p class="text-lg mx-48 mt-4">Niche</p>
-        <input data-group="input" id="niche-input" name="niche"  value="{{$jobinfo -> niche}}"  class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
+        <input data-group="input" id="niche-input" name="niche"  value="{{$niche}}"  class="mx-48 mt-2 outline-none border-2 rounded-md p-2" placeholder="Edit jobtitle">
         <i data-group="pen" id="niche-edit-js" class="fa-solid fa-pen absolute right-60 bottom-4 text-md hover:cursor-pointer"></i>
      </div>  
     
@@ -53,13 +58,12 @@
        
     </div>
  </form>
- @endforeach
 </x-layout>
 
 
 
 <script>
-    //routes to second page//////////////
+    //reroutes to second page//////////////
     document.querySelector('#submit').addEventListener('click',()=>{
             window.location.href = 'form2';
           })
@@ -134,7 +138,7 @@
            fetch(formElem.action,{
             method:'POST',
             headers: {
-                'X-Requested-With': 'XMLHttpRequest',
+                'formNumber': 'form1',
             },
             body:formData,
            })
